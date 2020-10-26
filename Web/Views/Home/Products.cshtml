@@ -1,0 +1,77 @@
+﻿@model IEnumerable<ChannelEngineServices.domain.Product>
+
+@{
+    ViewData["Title"] = "Products";
+}
+<script>
+
+    function ShowMessage() {
+        var result = confirm("Are you Sure For Updating Stock?");
+        if (result) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
+
+<h1>Products</h1>
+@if ((string)TempData["MSG"] == " Update successfully")
+{
+    <div class="alert alert-success">
+        <strong>Stock Updated Successfully</strong>
+    </div>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MerchantProductNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GTIN)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Stock)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Stock)
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MerchantProductNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GTIN)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Stock)
+            </td>
+            <td>
+                <form asp-action="SetStock" method="post">
+                    <input type="submit" value="Set Stock To 25" onclick="javascript:return ShowMessage();" />
+                    @Html.Hidden("id", item.MerchantProductNo)
+                </form>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

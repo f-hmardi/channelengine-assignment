@@ -1,0 +1,50 @@
+﻿@model IEnumerable<ChannelEngineServices.domain.Order>
+
+@{
+    ViewData["Title"] = "Orders";
+}
+
+<h1>Orders</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ChannelName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ChannelOrderNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedAt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+               Product
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChannelName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChannelOrderNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedAt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lines.ElementAt(0).MerchantProductNo)
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
